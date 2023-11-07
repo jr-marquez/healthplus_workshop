@@ -28,7 +28,7 @@ docker-compose  up -d
 ## Walkthrough Control Center
 
 Wait around for 3 minutes while the metrics are sent to Confluent Cloud and the dashboard is generated. 
-Meanwhile go to **http://<ip>:9021/clusters** , check the info displayed in the home screen.
+Meanwhile go to **http://<your_ip>:9021/clusters** , check the info displayed in the home screen.
 Do the same with the info inside **Cluster Overview**
 
 Now lets stop control center:
@@ -52,7 +52,7 @@ start docker again:
 ```bash
 docker-compose up -d
 ```
-wait 1 minute and try to open again **http://<ip>:9021/clusters**
+wait 1 minute and try to open again **http://<your_ip>:9021/clusters**
 
 do you see something different?
 
