@@ -9,17 +9,23 @@ Once you have a confluent cloud account please create a cloud api to send metric
 
 Clic **add key** , give **global access** and save api key and secret 
 
-inside the terminal (powershell in windows), execute :
+inside a terminal (powershell in windows), execute :
+```bash
+ssh ec2-user@<your_assigned_public_ip>
+```
+The password is shared by your instructor.
+
+Then:
 ```bash
 cd /home/ec2-user/healthplus_workshop/docker
-```
-set the environment variables 
-```bash
-source .my-env
 ```
 modify the file .my-env with your credentials
 ```bash
 vi .my-env
+```
+set the environment variables 
+```bash
+source .my-env
 ```
 Then run docker compose:
 ```bash
@@ -28,7 +34,7 @@ docker-compose  up -d
 ## Walkthrough Control Center
 
 Wait around for 3 minutes while the metrics are sent to Confluent Cloud and the dashboard is generated. 
-Meanwhile go to **http://<your_ip>:9021/clusters** , check the info displayed in the home screen.
+Meanwhile go to **http://<your_public_ip>>:9021/clusters** , check the info displayed in the home screen.
 Do the same with the info inside **Cluster Overview**
 
 Now lets stop control center:
@@ -52,7 +58,7 @@ start docker again:
 ```bash
 docker-compose up -d
 ```
-wait 1 minute and try to open again **http://<your_ip>:9021/clusters**
+wait 1 minute and try to open again **http://<your_public_ip>:9021/clusters**
 
 do you see something different?
 
