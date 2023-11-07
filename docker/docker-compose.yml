@@ -87,7 +87,7 @@ services:
       CONNECT_LOG4J_ROOT_LOGLEVEL: "INFO"
       CONNECT_LOG4J_LOGGERS: org.apache.zookeeper=ERROR,org.I0Itec.zkclient=ERROR,org.reflections=ERROR
       CONNECT_PLUGIN_PATH: '/usr/share/java,/usr/share/confluent-hub-components,/local-connect-jars'
-      CONNECT_CONFLUENT_TELEMETRY_ENABLED: true
+      CONNECT_CONFLUENT_TELEMETRY_ENABLED: "true"
       CONNECT_CONFLUENT_TELEMETRY_API_KEY: ${CCLOUD_API_KEY}
       CONNECT_CONFLUENT_TELEMETRY_API_SECRET: ${CCLOUD_API_SECRET}
       
@@ -179,7 +179,7 @@ services:
       KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
       KSQL_KSQL_COMMIT_INTERVAL_MS: 2000
       KSQL_KSQL_CACHE_MAX_BYTES_BUFFERING: 10000000
-      KSQL_CONFLUENT_TELEMETRY_ENABLED: true
+      KSQL_CONFLUENT_TELEMETRY_ENABLED: "true"
       KSQL_CONFLUENT_TELEMETRY_API_KEY: ${CCLOUD_API_KEY}
       KSQL_CONFLUENT_TELEMETRY_API_SECRET: ${CCLOUD_API_SECRET}
     healthcheck:
@@ -223,6 +223,6 @@ services:
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
       CONFLUENT_METRICS_TOPIC_REPLICATION: 1
       PORT: 9021
-      CONTROL_CENTER_MODE_ENABLE: management #Setear así para que quede en mgmt mode . Modos = management y all
+      CONTROL_CENTER_MODE_ENABLE: "all" #Setear así para que quede en mgmt mode . Modos = management y all
       
 

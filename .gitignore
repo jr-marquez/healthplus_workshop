@@ -35,7 +35,3 @@ terraform/aws/.terraform/providers/registry.terraform.io/hashicorp/template/2.2.
 terraform/aws/.terraform.lock.hcl
 terraform_old
 docker/.ramon
-docker/delta_configs
-docker/oradata
-docker/docker-compose-oracleTest.yml
-docker/docker-compose-replicator.yml
