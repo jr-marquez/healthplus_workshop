@@ -33,9 +33,9 @@ docker-compose  up -d
 ```
 ## Walkthrough Control Center
 
-Wait around for 3 minutes while the metrics are sent to Confluent Cloud and the dashboard is generated. 
-Meanwhile go to **http://<your_public_ip>>:9021/clusters** , check the info displayed in the home screen.
+Go to **http://<your_public_ip>>:9021/clusters** , check the info displayed in the home screen.
 Do the same with the info inside **Cluster Overview**
+You are seeing all the metrics, true?
 
 Now lets stop control center:
 ```bash
@@ -78,3 +78,24 @@ change the name of the monitoing cluster (put **production**):
 ![health4](img/health4.png)
 
 Explore the metrics inside Health+
+
+## Creating Alerts
+
+To create alerts first of all we need to configure them. Go to the home page of health+ and select **Intelligent alerts**
+
+![health5](img/health5.png)
+
+![health6](img/health6.png)
+
+First of all, check all the notification center.
+Under the section **Health+ Free** activate **Connector is failed** and set the email 
+
+![health7](img/health7.png)
+
+![health8](img/health8.png)
+
+Lets create an error setting to trigger this alert.
+
+```bash
+curl -s -X PUT -H  "Content-Type:application/json" http://localhost:8083/connectors/source-error/config -d '{"connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector","key.converter": "org.apache.kafka.connect.storage.StringConverter","kafka.topic": "error_topic","max.interval": 1000,"schema.filename": "/datagen/error.avro","schema.keyfield": "error" }
+```
