@@ -79,7 +79,7 @@ change the name of the monitoing cluster (put **production**):
 
 Explore the metrics inside Health+
 
-## Creating Alerts
+## Creating and Triggering Alerts
 
 To create alerts first of all we need to configure them. Go to the home page of health+ and select **Intelligent alerts**
 
@@ -88,14 +88,28 @@ To create alerts first of all we need to configure them. Go to the home page of 
 ![health6](img/health6.png)
 
 First of all, check all the notification center.
-Under the section **Health+ Free** activate **Connector is failed** and set the email 
+Under the section **Health+ Free** activate **Under min in sync replicas != 0** and set the email , please remember to **Update** once you set the email
 
 ![health7](img/health7.png)
 
 ![health8](img/health8.png)
 
-Lets create an error setting to trigger this alert.
+Lets create a topic in Control Center (Home-->Topics and then **+ Add Topic** )with the following configuration:
+- Topic Name: error
+- Number of Partitions: 3
+click on **Customize Settings**
+inside Custom availablity settings:
+- replication_factor: 3
+- min_insync_replicas: 3
 
+Then clic on **Save & Create**
+
+![health9](img/health9.png)
+
+Now lets stop one of the brokers to trigger the alert 
 ```bash
-curl -s -X PUT -H  "Content-Type:application/json" http://localhost:8083/connectors/source-error/config -d '{"connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector","key.converter": "org.apache.kafka.connect.storage.StringConverter","kafka.topic": "error_topic","max.interval": 1000,"schema.filename": "/datagen/error.avro","schema.keyfield": "error" }
+docker stop workshop-kafka2
 ```
+Check Control Center. Wait for red flags
+Which metrics can you see in Health+?
+Have you recieved the alert?
